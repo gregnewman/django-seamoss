@@ -9,7 +9,10 @@ List of tasks for Seamoss
 * TODO menu middleware or template tag(s)
 * TODO page preview
 * TODO Markup for page view and preview
-* TODO Markup help for admint
+* TODO Markup help for admin
+* TODO Custom list display for menus
+  allowing the user to see what links are assigned
+* TODO sorting menues with drag-n-drop or up/down
 * DONE tagging
 * DONE Content model
 * DONE Menus model
