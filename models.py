@@ -91,7 +91,7 @@ class Menu(models.Model):
 
     # page assignment
     # use to assign menus to show on certain pages only. handy for special submenus
-    show_on_pages = models.ManyToManyField(Page, null=True, blank=True, help_text=_("If you want this page to show sub menus, choose which ones are to be assigned"))
+    show_on_pages = models.ManyToManyField(Page, null=True, blank=True, help_text=_("If you want a page to show this menu as a sub menu select which page(s) here"))
 
     # dates
     created_by = models.ForeignKey(User, null=True, editable=False, related_name="%(class)s_created_by")
