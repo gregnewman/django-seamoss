@@ -6,17 +6,14 @@
 
 List of tasks for Seamoss
 
-* TODO tagging
-* TODO comments
+* DONE tagging
+* SOMEDAY comments
 * DONE Content model
-  CLOSED: [2009-05-19 Tue 05:45]
 * DONE Menus model
-  CLOSED: [2009-05-19 Tue 06:00]
 * DONE Menu/Page Association
-  CLOSED: [2009-05-19 Tue 06:30]
-* DONE ordering
-  CLOSED: [2009-05-19 Tue 06:30]
-* TODO related content
+* DONE ordering (uses MPTT)
+* DONE related content
+
 
 Dependencies
 * Textile: http://pypi.python.org/pypi/textile
