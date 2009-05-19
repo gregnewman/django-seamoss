@@ -30,9 +30,9 @@ class Page(models.Model):
     #TODO check for sites framework
 
     title = models.CharField(_('Title'), max_length=200)
-    slug = models.SlugField(_('Slug'), max_length=100, unique=True, help_text="This is a unique identifier that allows your page to display its detail view, ex 'this-is-my-title'")
+    slug = models.SlugField(_('Slug'), max_length=100, unique=True, help_text=_("This is a unique identifier that allows your page to display its detail view, ex 'this-is-my-title'"))
 
-    excerpt = models.TextField(_('Excerpt'), blank=True, null=True, help_text="This is a teaser of the body text; optional")
+    excerpt = models.TextField(_('Excerpt'), blank=True, null=True, help_text=_("This is a teaser of the body text; optional"))
     body = models.TextField(_('Body'), blank=False, null=False)
 
     # markup
@@ -49,7 +49,7 @@ class Page(models.Model):
     sites = models.ManyToManyField(Site, default=[settings.SITE_ID])
     
     # flags
-    published = models.BooleanField(_('Published'), default=True, help_text="If unchecked the page will not be accessible to users")
+    published = models.BooleanField(_('Published'), default=True, help_text=_("If unchecked the page will not be accessible to users"))
 
     # dates
     publish_on = models.DateTimeField(_('Publish On'), null=True, blank=True)
@@ -80,15 +80,15 @@ class Menu(models.Model):
     Multiple menus are supported so a site can have a main navbar and subnavs
     """
 
-    title = models.CharField(_('Title'), max_length=200, help_text="Used only to differentiate the menus")
-    description = models.TextField(_('Description'), null=True, blank=True, help_text="A brief description of the menu")
+    title = models.CharField(_('Title'), max_length=200, help_text=_("Used only to differentiate the menus"))
+    description = models.TextField(_('Description'), null=True, blank=True, help_text=_("A brief description of the menu"))
 
     # associations
-    parent = models.ForeignKey("self", blank=True, null=True, help_text="If this menu is a subnavigation menu, assign it it's parent menu")
+    parent = models.ForeignKey("self", blank=True, null=True, help_text=_("If this menu is a subnavigation menu, assign it it's parent menu"))
     sites = models.ManyToManyField(Site, default=[settings.SITE_ID])
     
     # flags
-    published = models.BooleanField(_('Published'), default=True, help_text="If unchecked the menu will not be visible to users")
+    published = models.BooleanField(_('Published'), default=True, help_text=_("If unchecked the menu will not be visible to users"))
 
     # dates
     created_by = models.ForeignKey(User, null=True, editable=False, related_name="%(class)s_created_by")
@@ -117,11 +117,11 @@ class MenuItem(models.Model):
     name = models.CharField(_('Link Name'), max_length=200)
     menu = models.ForeignKey(Menu)
     internal_item = models.ForeignKey(Page, null=True, blank=True)
-    external = models.BooleanField(_('External Link'), default=False, help_text="If this link goes to a external site check this box")
+    external = models.BooleanField(_('External Link'), default=False, help_text=_("If this link goes to a external site check this box"))
     external_link = models.URLField(_('Link URL'), verify_exists=True, max_length=200, blank=True, null=True)
 
     # parenting
-    parent = models.ForeignKey("self", blank=True, null=True, help_text="If this item is a child of another item, assign it's parent")
+    parent = models.ForeignKey("self", blank=True, null=True, help_text=_("If this item is a child of another item, assign it's parent"))
     
     # dates
     created_by = models.ForeignKey(User, null=True, editable=False, related_name="%(class)s_created_by")
