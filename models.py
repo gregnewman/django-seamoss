@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
 try:
-    markup_choices = settings.WIKI_MARKUP_CHOICES
+    markup_choices = settings.SEAMOSS_MARKUP_CHOICES
 except AttributeError:
     markup_choices = (
         ('txl', _(u'Textile')),
