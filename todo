@@ -19,7 +19,7 @@ List of tasks for Seamoss
 * DONE Menu/Page Association
 * DONE ordering (uses MPTT)
 * DONE related content
-* SOMEDAY comments
+* MAYBE comments
 
 Dependencies
 * Textile: http://pypi.python.org/pypi/textile
