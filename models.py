@@ -121,9 +121,6 @@ class MenuItem(models.Model):
     # parenting
     parent = models.ForeignKey("self", blank=True, null=True, help_text="If this item is a child of another item, assign it's parent")
     
-    # sorting
-    position = models.IntegerField()
-
     # dates
     created_by = models.ForeignKey(User, null=True, editable=False, related_name="%(class)s_created_by")
     created_on = models.DateTimeField(_('Created On'), default=datetime.now, editable=False)
@@ -132,7 +129,7 @@ class MenuItem(models.Model):
 
 
     class Meta:
-        ordering = ['position', 'name', ]
+        ordering = ['name', ]
 
     def __unicode__(self):
         return self.name
@@ -140,3 +137,10 @@ class MenuItem(models.Model):
     def save(self):
         self.updated_on = datetime.now()
         super(MenuItem, self).save()
+
+
+# Don't register the Page model twice.
+try:
+    mptt.register(MenuItem)
+except mptt.AlreadyRegistered:
+    pass
