@@ -27,8 +27,6 @@ class Page(models.Model):
     Base class for page content
     """
 
-    #TODO check for sites framework
-
     title = models.CharField(_('Title'), max_length=200)
     slug = models.SlugField(_('Slug'), max_length=100, unique=True, help_text=_("This is a unique identifier that allows your page to display its detail view, ex 'this-is-my-title'"))
 
