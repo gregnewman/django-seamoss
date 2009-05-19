@@ -1,0 +1,15 @@
+# -*- mode: org -*-
+#+TITLE:     TODO
+#+SEQ_TODO:  TODO WAITING | DONE CANCELLED MAYBE PARTIAL
+#+DRAWERS:   SNIP
+#+CATEGORY:  seamoss
+
+List of tasks for Seamoss
+
+* TODO Content model
+* TODO TinyMCE
+* TODO tagging
+* TODO comments
+* TODO Menus model
+* TODO ordering
+* TODO related content
