@@ -46,6 +46,7 @@ class Page(models.Model):
 
     # relations
     related_content = models.ManyToManyField("self")
+    sites = models.ManyToManyField(Site)
     
     # flags
     published = models.BooleanField(_('Published'), default=True, help_text="If unchecked the page will not be accessible to users")
@@ -82,9 +83,10 @@ class Menu(models.Model):
     title = models.CharField(_('Title'), max_length=200, help_text="Used only to differentiate the menus")
     description = models.TextField(_('Description'), null=True, blank=True, help_text="A brief description of the menu")
 
-    # menu association
+    # associations
     parent = models.ForeignKey("self", blank=True, null=True, help_text="If this menu is a subnavigation menu, assign it it's parent menu")
-
+    sites = models.ManyToManyField(Site)
+    
     # flags
     published = models.BooleanField(_('Published'), default=True, help_text="If unchecked the menu will not be visible to users")
 
