@@ -30,7 +30,7 @@ class Page(models.Model):
     #TODO check for sites framework
 
     title = models.CharField(_('Title'), max_length=200)
-    slug = models.SlugField(_('Slug'), max_length=100, help_text="This is a unique identifier that allows your page to display its detail view, ex 'this-is-my-title'")
+    slug = models.SlugField(_('Slug'), max_length=100, unique=True, help_text="This is a unique identifier that allows your page to display its detail view, ex 'this-is-my-title'")
 
     excerpt = models.TextField(_('Excerpt'), blank=True, null=True, help_text="This is a teaser of the body text; optional")
     body = models.TextField(_('Body'), blank=False, null=False)
@@ -46,7 +46,7 @@ class Page(models.Model):
 
     # relations
     related_content = models.ManyToManyField("self")
-    sites = models.ManyToManyField(Site)
+    sites = models.ManyToManyField(Site, default=[settings.SITE_ID])
     
     # flags
     published = models.BooleanField(_('Published'), default=True, help_text="If unchecked the page will not be accessible to users")
@@ -85,7 +85,7 @@ class Menu(models.Model):
 
     # associations
     parent = models.ForeignKey("self", blank=True, null=True, help_text="If this menu is a subnavigation menu, assign it it's parent menu")
-    sites = models.ManyToManyField(Site)
+    sites = models.ManyToManyField(Site, default=[settings.SITE_ID])
     
     # flags
     published = models.BooleanField(_('Published'), default=True, help_text="If unchecked the menu will not be visible to users")

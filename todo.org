@@ -5,15 +5,13 @@
 #+CATEGORY:  seamoss
 
 List of tasks for Seamoss
-
 * DONE tagging
-* SOMEDAY comments
 * DONE Content model
 * DONE Menus model
 * DONE Menu/Page Association
 * DONE ordering (uses MPTT)
 * DONE related content
-
+* SOMEDAY comments
 
 Dependencies
 * Textile: http://pypi.python.org/pypi/textile
@@ -23,3 +21,4 @@ Dependencies
 
 Optional Dependencies
 * Tagging: http://code.google.com/p/django-tagging/
+
