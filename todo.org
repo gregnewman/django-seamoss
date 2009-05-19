@@ -21,3 +21,8 @@ List of tasks for Seamoss
 Dependencies
 * Textile: http://pypi.python.org/pypi/textile
 * Markdown: http://www.freewisdom.org/projects/python-markdown/
+* MPTT: http://code.google.com/p/django-mptt/
+* Reversion: http://code.google.com/p/django-reversion/
+
+Optional Dependencies
+* Tagging: http://code.google.com/p/django-tagging/
