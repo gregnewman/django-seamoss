@@ -117,7 +117,7 @@ class MenuItem(models.Model):
     and does not have to be a page in the cms
     """
 
-    name = models.CharField(_('Link Name'), max_length=200)
+    name = models.CharField(_('Link Text'), max_length=200, help_text=_("This is what displays in the menu"))
     menu = models.ForeignKey(Menu)
     internal_item = models.ForeignKey(Page, null=True, blank=True)
     external = models.BooleanField(_('External Link'), default=False, help_text=_("If this link goes to a external site check this box"))
