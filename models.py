@@ -1,8 +1,17 @@
-import enums
 from datetime import datetime
+from django.core.exceptions import ImproperlyConfigured
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.sites.models import Site
+import mptt
+from seamoss import settings
+
+try:
+    tagging = models.get_app('tagging')
+    from tagging.fields import TagField
+except ImproperlyConfigured:
+    tagging = False
 
 try:
     markup_choices = settings.SEAMOSS_MARKUP_CHOICES
@@ -18,7 +27,7 @@ class Page(models.Model):
     Base class for page content
     """
 
-    #TODO check for sites
+    #TODO check for sites framework
 
     title = models.CharField(_('Title'), max_length=200)
     slug = models.SlugField(_('Slug'), max_length=100, help_text="This is a unique identifier that allows your page to display its detail view, ex 'this-is-my-title'")
@@ -30,8 +39,10 @@ class Page(models.Model):
     markup = models.CharField(_("Content Markup"), max_length=3, choices=markup_choices, null=True, blank=True)
     
     # Meta
-    keywords = models.CharField(_('Meta Keywords'), null=True, blank=True)
+    keywords = models.CharField(_('Meta Keywords'), max_length=200, null=True, blank=True)
     description = models.TextField(_('Meta Description'), null=True, blank=True)
+    if tagging:
+        tags = TagField()
 
     # relations
     related_content = models.ManyToManyField("self")
@@ -59,7 +70,7 @@ class Page(models.Model):
         super(Page, self).save()
 
     def is_published(self):
-        return self.status == enums.STATUS_ACTIVE
+        return self.published
 
 
 class Menu(models.Model):
@@ -72,7 +83,7 @@ class Menu(models.Model):
     description = models.TextField(_('Description'), null=True, blank=True, help_text="A brief description of the menu")
 
     # menu association
-    parent = models.ForeignKey(Menu, blank=True, null=True, help_text="If this menu is a subnavigation menu, assign it it's parent menu")
+    parent = models.ForeignKey("self", blank=True, null=True, help_text="If this menu is a subnavigation menu, assign it it's parent menu")
 
     # flags
     published = models.BooleanField(_('Published'), default=True, help_text="If unchecked the menu will not be visible to users")
@@ -108,7 +119,7 @@ class MenuItem(models.Model):
     external_link = models.URLField(_('Link URL'), verify_exists=True, max_length=200, blank=True, null=True)
 
     # parenting
-    parent = models.ForeignKey(MenuItem, blank=True, null=True, help_text="If this item is a child of another item, assign it's parent")
+    parent = models.ForeignKey("self", blank=True, null=True, help_text="If this item is a child of another item, assign it's parent")
     
     # sorting
     position = models.IntegerField()
