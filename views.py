@@ -12,7 +12,7 @@ def render_page(request, slug):
     Displays the page matching the given slug
     """
 
-    page = user = get_object_or_404(Page, slug=slug)
+    page = user = get_object_or_404(Page, slug=slug, published=True)
     
     return render_to_response('seamoss/page.html', {
         "page": page,
