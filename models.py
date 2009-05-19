@@ -13,6 +13,7 @@ try:
 except ImproperlyConfigured:
     tagging = False
 
+#TODO move this to settings.py
 try:
     markup_choices = settings.SEAMOSS_MARKUP_CHOICES
 except AttributeError:
