@@ -6,7 +6,8 @@
 
 List of tasks for Seamoss
 
-* TODO Content model
+* DONE Content model
+  CLOSED: [2009-05-19 Tue 05:45]
 * TODO TinyMCE
 * TODO tagging
 * TODO comments
