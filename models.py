@@ -89,6 +89,10 @@ class Menu(models.Model):
     # flags
     published = models.BooleanField(_('Published'), default=True, help_text=_("If unchecked the menu will not be visible to users"))
 
+    # page assignment
+    # use to assign menus to show on certain pages only. handy for special submenus
+    show_on_pages = models.ManyToManyField(Page, null=True, blank=True, help_text=_("If you want this page to show sub menus, choose which ones are to be assigned"))
+
     # dates
     created_by = models.ForeignKey(User, null=True, editable=False, related_name="%(class)s_created_by")
     created_on = models.DateTimeField(_('Created On'), default=datetime.now, editable=False)
