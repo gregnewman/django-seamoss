@@ -4,6 +4,15 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
+try:
+    markup_choices = settings.WIKI_MARKUP_CHOICES
+except AttributeError:
+    markup_choices = (
+        ('txl', _(u'Textile')),
+        ('mrk', _(u'Markdown')),
+        ('rst', _(u'reStructuredText')),
+    )
+    
 class Page(models.Model):
     """
     Base class for page content
@@ -17,6 +26,9 @@ class Page(models.Model):
     excerpt = models.TextField(_('Excerpt'), blank=True, null=True, help_text="This is a teaser of the body text; optional")
     body = models.TextField(_('Body'), blank=False, null=False)
 
+    # markup
+    markup = models.CharField(_("Content Markup"), max_length=3, choices=markup_choices, null=True, blank=True)
+    
     # Meta
     keywords = models.CharField(_('Meta Keywords'), null=True, blank=True)
     description = models.TextField(_('Meta Description'), null=True, blank=True)

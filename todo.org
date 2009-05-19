@@ -17,3 +17,7 @@ List of tasks for Seamoss
 * DONE ordering
   CLOSED: [2009-05-19 Tue 06:30]
 * TODO related content
+
+Dependencies
+* Textile: http://pypi.python.org/pypi/textile
+* Markdown: http://www.freewisdom.org/projects/python-markdown/
