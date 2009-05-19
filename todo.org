@@ -6,11 +6,14 @@
 
 List of tasks for Seamoss
 
-* DONE Content model
-  CLOSED: [2009-05-19 Tue 05:45]
-* TODO TinyMCE
 * TODO tagging
 * TODO comments
-* TODO Menus model
-* TODO ordering
+* DONE Content model
+  CLOSED: [2009-05-19 Tue 05:45]
+* DONE Menus model
+  CLOSED: [2009-05-19 Tue 06:00]
+* DONE Menu/Page Association
+  CLOSED: [2009-05-19 Tue 06:30]
+* DONE ordering
+  CLOSED: [2009-05-19 Tue 06:30]
 * TODO related content
