@@ -5,9 +5,11 @@
 #+CATEGORY:  seamoss
 
 List of tasks for Seamoss
-* TODO home tpage blocks
+* TODO home page blocks
 * TODO menu middleware or template tag(s)
 * TODO page preview
+* TODO Markup for page view and preview
+* TODO Markup help for admint
 * DONE tagging
 * DONE Content model
 * DONE Menus model
