@@ -27,7 +27,7 @@ class Page(models.Model):
     """
     Base class for page content
     """
-
+	
     title = models.CharField(_('Title'), max_length=200)
     slug = models.SlugField(_('Slug'), max_length=100, unique=True, help_text=_("This is a unique identifier that allows your page to display its detail view, ex 'this-is-my-title'"))
 
@@ -44,7 +44,7 @@ class Page(models.Model):
         tags = TagField()
 
     # relations
-    related_content = models.ManyToManyField("self")
+    related_content = models.ManyToManyField("self", null=True, blank=True)
     sites = models.ManyToManyField(Site, default=[settings.SITE_ID])
     
     # flags
@@ -142,6 +142,12 @@ class MenuItem(models.Model):
     def save(self):
         self.updated_on = datetime.now()
         super(MenuItem, self).save()
+        
+    @models.permalink
+    def get_absolute_url(self):
+        return ('render-page', (), {
+            'slug': self.slug,
+        })
 
 
 # Don't register the Page model twice.
