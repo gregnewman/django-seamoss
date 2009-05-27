@@ -145,9 +145,12 @@ class MenuItem(models.Model):
         
     @models.permalink
     def get_absolute_url(self):
-        return ('render-page', (), {
-            'slug': self.slug,
-        })
+    	if not self.external:
+    		return ('render-page', (), {
+    	        'slug': self.internal_item.slug,
+        	})
+    	else:
+	    	return ""
 
 
 # Don't register the Page model twice.
