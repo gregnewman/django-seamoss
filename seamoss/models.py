@@ -144,7 +144,6 @@ class MenuItem(models.Model):
         self.updated_on = datetime.now()
         super(MenuItem, self).save()
         
-#    @models.permalink
     def get_absolute_url(self):
     	if not self.external:
     		return "/%s/" % (self.internal_item.slug)
