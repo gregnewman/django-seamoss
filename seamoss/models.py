@@ -4,6 +4,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.sites.models import Site
+from django.utils.safestring import mark_safe
 import mptt
 from seamoss import settings
 
@@ -143,15 +144,12 @@ class MenuItem(models.Model):
         self.updated_on = datetime.now()
         super(MenuItem, self).save()
         
-    @models.permalink
+#    @models.permalink
     def get_absolute_url(self):
     	if not self.external:
-    		return ('render-page', (), {
-    	        'slug': self.internal_item.slug,
-        	})
+    		return "/%s/" % (self.internal_item.slug)
     	else:
-	    	return ""
-
+    	    return "%s" % (self.external_link)
 
 # Don't register the Page model twice.
 try:
