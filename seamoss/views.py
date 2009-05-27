@@ -7,12 +7,23 @@ from django.template import RequestContext
 
 from models import *
 
+def home_page(request):
+    """
+    Displays the page matching the given slug
+    """
+
+    page = get_object_or_404(Page, slug='home', published=True)
+    
+    return render_to_response('seamoss/page.html', {
+        "page": page,
+    }, context_instance=RequestContext(request))
+
 def render_page(request, slug):
     """
     Displays the page matching the given slug
     """
 
-    page = user = get_object_or_404(Page, slug=slug, published=True)
+    page = get_object_or_404(Page, slug=slug, published=True)
     
     return render_to_response('seamoss/page.html', {
         "page": page,
