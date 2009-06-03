@@ -28,7 +28,7 @@ class Page(models.Model):
     """
     Base class for page content
     """
-	
+    
     title = models.CharField(_('Title'), max_length=200)
     slug = models.SlugField(_('Slug'), max_length=100, unique=True, help_text=_("This is a unique identifier that allows your page to display its detail view, ex 'this-is-my-title'"))
 
@@ -72,7 +72,36 @@ class Page(models.Model):
 
     def is_published(self):
         return self.published
+        
+class Block(models.Model):
+    """
+    Stores blocks of content that can be used throughout the site for cases
+    like sidebar blocks, footer blocks, etc.
+    """
+    
+    name = models.CharField(_('Name'), max_length=150, blank=True, null=True)
+    slug = models.SlugField()
+    body = models.TextField(_('Body'), blank=False, null=False)
+    markup = models.CharField(_("Content Markup"), max_length=3, choices=markup_choices, null=True, blank=True)
+    published = models.BooleanField(_('Published'), default=True, help_text=_("If unchecked the block will not be accessible to users"))
+    
+    show_on_pages = models.ManyToManyField(Page, help_text=_("Choose which pages this block can be displayed on."))
+    created_on = models.DateTimeField(_('Created On'), default=datetime.now, editable=False)
+    updated_on = models.DateTimeField(_('Updated On'), editable=False)
+    updated_by = models.ForeignKey(User, null=True, editable=False) 
 
+    class Meta:
+        ordering = ['created_on', ]
+
+    def __unicode__(self):
+        return self.name
+
+    def save(self):
+        self.updated_on = datetime.now()
+        super(Page, self).save()
+
+    def is_published(self):
+        return self.published
 
 class Menu(models.Model):
     """
@@ -145,11 +174,30 @@ class MenuItem(models.Model):
         super(MenuItem, self).save()
         
     def get_absolute_url(self):
-    	if not self.external:
-    		return "/%s/" % (self.internal_item.slug)
-    	else:
-    	    return "%s" % (self.external_link)
-
+        if not self.external:
+            return "/%s/" % (self.internal_item.slug)
+        else:
+            return "%s" % (self.external_link)
+            
+class CmsSetting(models.Model):
+    """
+    Stores settings for the cms in key/value pairs
+    Example:
+        key: homepage
+        value: home-page-slug
+    """
+    
+    setting_key = models.CharField(_('Setting Key'), max_length=100, help_text="The name for this key which will be called by the templatetags")
+    setting_value = models.CharField(_('Setting Value'), max_length=100, help_text="The value for the setting key")
+    
+    class Meta:
+        ordering = ['setting_key',]
+        verbose_name = "CMS Setting"
+        verbose_name_plural = "CMS Settings"
+    
+    def __unicode__(self):
+        return self.setting_key
+    
 # Don't register the Page model twice.
 try:
     mptt.register(MenuItem)

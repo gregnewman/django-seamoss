@@ -16,9 +16,21 @@ class MenuAdmin(VersionAdmin):
     list_filter = ('published',)
     save_on_top = True
 
+class BlockAdmin(VersionAdmin):
+    ordering=('name',)
+    list_display = ('name', 'slug', 'created_on')
+    list_filter = ('published',)
+    save_on_top = True
+    
 class MenuItemAdmin(admin.ModelAdmin):
     list_display = ('name', 'created_on',)
     
+class SettingAdmin(admin.ModelAdmin):
+    ordering = ('setting_key',)
+    list_display = ('setting_key', 'setting_value',)
+    
 admin.site.register(get_model('seamoss', 'page'), PageAdmin)
+admin.site.register(get_model('seamoss', 'block'), BlockAdmin)
 admin.site.register(get_model('seamoss', 'menu'), MenuAdmin)
 admin.site.register(get_model('seamoss', 'menuitem'), MenuItemAdmin)
+admin.site.register(get_model('seamoss', 'cmssetting'), SettingAdmin)
