@@ -20,7 +20,7 @@ class PageAdmin(VersionAdmin):
 
 class MenuAdmin(VersionAdmin):
     ordering = ('title',)
-    list_display = ('title', 'id', 'published', 'created_on')
+    list_display = ('title', 'published', 'created_on')
     list_filter = ('published',)
     prepopulated_fields = {'slug': ('title',)}
     save_on_top = True
