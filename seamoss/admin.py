@@ -2,6 +2,12 @@ from django.contrib import admin
 from models import *
 from django.db.models import get_model
 from reversion.admin import VersionAdmin
+from seamoss.forms import PageForm
+
+try:
+    tinymce = models.get_app('tinymce')
+except ImproperlyConfigured:
+    tinymce = False
 
 class PageAdmin(VersionAdmin):
     ordering = ('title',)
@@ -9,6 +15,8 @@ class PageAdmin(VersionAdmin):
     list_filter = ('published',)
     prepopulated_fields = {'slug': ('title',)}
     save_on_top = True
+    if tinymce:
+        form = PageForm
 
 class MenuAdmin(VersionAdmin):
     ordering = ('title',)
