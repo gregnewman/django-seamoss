@@ -20,7 +20,7 @@ def do_get_menu(parser, token):
     returns menu items for a given menu slug which must match a menu in the admin
     
     Example usage:
-    {% get_menu 1 as menu %}
+    {% get_menu slug as menu %}
 
     """
 
