@@ -11,13 +11,13 @@ class MenuNode(Node):
         self.menuname, self.varname = menuname, varname
 
     def render(self, context):
-    	menu = Menu.objects.get(pk=self.menuname)
+    	menu = Menu.objects.get(slug=self.menuname)
         context[self.varname] = MenuItem.objects.filter(menu=menu)
         return ''
 
 def do_get_menu(parser, token):
     """
-    returns menu items for a given menu id which must match a menu in the admin
+    returns menu items for a given menu slug which must match a menu in the admin
     
     Example usage:
     {% get_menu 1 as menu %}
