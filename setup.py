@@ -23,10 +23,5 @@ setup(
         'Programming Language :: Python',
         'Framework :: Django',
     ],
-    package_data = {
-        'seamoss': [
-            'templates/attachments/*.html',
-        ]
-    },
     zip_safe=False,
 )
