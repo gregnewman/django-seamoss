@@ -9,13 +9,27 @@ register = Library()
 class MenuNode(Node):
     def __init__(self, menuname, varname):
         self.menuname, self.varname = menuname, varname
+        
+    def resolve(self, var, context):
+        """Resolves a variable out of context if it's not in quotes"""
+        if var[0] in ('"', "'") and var[-1] == var[0]:
+            return var[1:-1]
+        else:
+            return Variable(var).resolve(context)
 
     def render(self, context):
-    	menu = Menu.objects.get(slug=self.menuname)
-        context[self.varname] = MenuItem.objects.filter(menu=menu)
+        menuname = self.resolve(self.menuname, context)
+        if self.varname:
+            varname = self.resolve(self.varname, context)
+        else:
+            varname = 'menu'
+
+    	menu = Menu.objects.get(slug=menuname)
+        context[varname] = MenuItem.objects.filter(menu=menu)
         return ''
 
-def do_get_menu(parser, token):
+@register.tag
+def get_menu(parser, token):
     """
     returns menu items for a given menu slug which must match a menu in the admin
     
@@ -31,5 +45,3 @@ def do_get_menu(parser, token):
         raise TemplateSyntaxError, "second argument to the get_menu tag must be 'as'"
 
     return MenuNode(args[1], args[3])
-    
-register.tag('get_menu', do_get_menu)
