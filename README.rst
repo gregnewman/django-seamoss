@@ -1,0 +1,21 @@
+==============
+django-seamoss
+==============
+
+django-seamoss is a simple cms to add to your django application to give your
+administrators the ability to control parts of the site including pages, menus and
+content blocks.
+
+Installation:
+=============
+
+1. Put ``seamoss`` to your ``INSTALLED_APPS`` in your ``settings.py``
+   within your django project.
+
+2. Add ``url(r'^(?P<slug>[-_\w]+)/$', 'seamoss.views.render_page', name="render-page"),`` to your ``urls.py``.  It would be best to put it after your admin urls and any other important urls.
+
+Roadmap:
+========
+
+While this app is stable on at least one site the menu system needs to be completed to provide
+the ability to use up/down buttons to reorder the menu items.
