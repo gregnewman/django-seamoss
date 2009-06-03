@@ -110,6 +110,7 @@ class Menu(models.Model):
     """
 
     title = models.CharField(_('Title'), max_length=200, help_text=_("Used only to differentiate the menus"))
+    slug = models.SlugField(unique=True)
     description = models.TextField(_('Description'), null=True, blank=True, help_text=_("A brief description of the menu"))
 
     # associations
@@ -150,7 +151,7 @@ class MenuItem(models.Model):
     name = models.CharField(_('Link Text'), max_length=200, help_text=_("This is what displays in the menu"))
     menu = models.ForeignKey(Menu)
     internal_item = models.ForeignKey(Page, null=True, blank=True)
-    external = models.BooleanField(_('External Link'), default=False, help_text=_("If this link goes to a external site check this box"))
+    external = models.BooleanField(_('External Link'), default=False, help_text=_("If this link goes to a external site check this box.  NOTE: It will override an internal link."))
     external_link = models.URLField(_('Link URL'), verify_exists=True, max_length=200, blank=True, null=True)
 
     # parenting
