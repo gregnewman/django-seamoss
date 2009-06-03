@@ -80,7 +80,7 @@ class Block(models.Model):
     """
     
     name = models.CharField(_('Name'), max_length=150, blank=True, null=True)
-    slug = models.SlugField()
+    slug = models.SlugField(unique=True)
     body = models.TextField(_('Body'), blank=False, null=False)
     markup = models.CharField(_("Content Markup"), max_length=3, choices=markup_choices, null=True, blank=True)
     published = models.BooleanField(_('Published'), default=True, help_text=_("If unchecked the block will not be accessible to users"))
@@ -98,7 +98,7 @@ class Block(models.Model):
 
     def save(self):
         self.updated_on = datetime.now()
-        super(Page, self).save()
+        super(Block, self).save()
 
     def is_published(self):
         return self.published

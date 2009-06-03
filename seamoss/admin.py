@@ -20,6 +20,7 @@ class BlockAdmin(VersionAdmin):
     ordering=('name',)
     list_display = ('name', 'slug', 'created_on')
     list_filter = ('published',)
+    prepopulated_fields = {'slug': ('name',)}
     save_on_top = True
     
 class MenuItemAdmin(admin.ModelAdmin):
