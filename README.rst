@@ -1,5 +1,5 @@
 ==============
-django-seamoss
+Django-Seamoss
 ==============
 
 django-seamoss is a simple cms to add to your django application to give your
@@ -21,6 +21,7 @@ Features:
 2.  Menu items can be linked to internal pages via a dropdown or external sites via a textfield.
 3.  Markup language dropdown provided in the admin with a override for tinymce if it is installed.
 4.  Basic key/value settings administration
+5.  Creation of content blocks for use in sidebars, footers, etc.
 
 Roadmap:
 ========
