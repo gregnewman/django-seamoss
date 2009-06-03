@@ -14,6 +14,14 @@ Installation:
 
 2. Add ``url(r'^(?P<slug>[-_\w]+)/$', 'seamoss.views.render_page', name="render-page"),`` to your ``urls.py``.  It would be best to put it after your admin urls and any other important urls.
 
+Features:
+=========
+
+1.  Unlimited menus providing the ability to create main navigation and sidebar navigations.
+2.  Menu items can be linked to internal pages via a dropdown or external sites via a textfield.
+3.  Markup language dropdown provided in the admin with a override for tinymce if it is installed.
+4.  Basic key/value settings administration
+
 Roadmap:
 ========
 
