@@ -26,5 +26,5 @@ Features:
 Roadmap:
 ========
 
-While this app is stable on at least one site the menu system needs to be completed to provide
+NOTE: Menus are not yet sortable via the admin.  While this app is stable on at least one site (http://beta.cis-pa.org) the menu system needs to be completed to provide
 the ability to use up/down buttons to reorder the menu items.
