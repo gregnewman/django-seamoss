@@ -33,7 +33,7 @@ class BlockAdmin(VersionAdmin):
     save_on_top = True
     
 class MenuItemAdmin(admin.ModelAdmin):
-    list_display = ('name', 'created_on',)
+    list_display = ('name', 'created_on', 'menu', 'order_link',)
     
 class SettingAdmin(admin.ModelAdmin):
     ordering = ('setting_key',)
