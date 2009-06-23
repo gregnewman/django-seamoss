@@ -59,7 +59,7 @@ class Page(models.Model):
     def __unicode__(self):
         return self.title
 
-    def save(self):
+    def save(self, *args, **kwargs):
         self.updated_on = datetime.now()
         super(Page, self).save()
 
@@ -89,7 +89,7 @@ class Block(models.Model):
     def __unicode__(self):
         return self.name
 
-    def save(self):
+    def save(self, *args, **kwargs):
         self.updated_on = datetime.now()
         super(Block, self).save()
 
@@ -129,7 +129,7 @@ class Menu(models.Model):
     def __unicode__(self):
         return self.title
 
-    def save(self):
+    def save(self, *args, **kwargs):
         self.updated_on = datetime.now()
         super(Menu, self).save()
 
@@ -163,7 +163,7 @@ class MenuItem(models.Model):
     def __unicode__(self):
         return self.name
 
-    def save(self):
+    def save(self, *args, **kwargs):
         self.updated_on = datetime.now()
         super(MenuItem, self).save()
         
