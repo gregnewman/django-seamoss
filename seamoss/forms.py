@@ -9,10 +9,3 @@ class PageForm(forms.ModelForm):
     class Meta:
         model = Page
         exclude = ('markup',)
-        
-        
-class MenuItemForm(forms.ModelForm):
-
-    class Meta:
-        model = MenuItem
-        exclude = ('lft', 'rght', 'tree_id', 'level', )
