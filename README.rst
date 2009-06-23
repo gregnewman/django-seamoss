@@ -28,6 +28,7 @@ Dependencies:
 
 1.  django-Markup
 2.  django-mptt
+3.  django-reversion
 3.  django-tagging (optional)
 4.  django-tinymce (optional)
 
