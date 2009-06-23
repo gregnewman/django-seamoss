@@ -75,7 +75,7 @@ class Block(models.Model):
     name = models.CharField(_('Name'), max_length=150, blank=True, null=True)
     slug = models.SlugField(unique=True)
     body = models.TextField(_('Body'), blank=False, null=False)
-    markup = models.CharField(_("Content Markup"), max_length=3, choices=markup_choices, null=True, blank=True)
+    markup = MarkupField(default='none')
     published = models.BooleanField(_('Published'), default=True, help_text=_("If unchecked the block will not be accessible to users"))
     
     show_on_pages = models.ManyToManyField(Page, help_text=_("Choose which pages this block can be displayed on."))
