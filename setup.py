@@ -8,10 +8,15 @@ setup(
     author='Greg Newman',
     author_email='greg@20seven.org',
     url='https://github.com/gregnewman/django-seamoss/tree/master',
+    install_requires=(
+        'django-tagging',
+        'django-mptt',
+        'django-reversion',
+    ),
     setup_requires=(
-        'tagging', # (>0.2.1)',
-        'django_mptt (>0.2.1)',
-        'reversion (>1.1.1)',
+        'tagging',
+        'django_mptt',
+        'reversion',
     ),
     packages=find_packages(),
     classifiers=[
