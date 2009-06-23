@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.sites.models import Site
 from django.utils.safestring import mark_safe
+from django.core.urlresolvers import reverse
 import mptt
 from seamoss import settings
 from django_markup.fields import MarkupField
@@ -166,6 +167,19 @@ class MenuItem(models.Model):
     def save(self, *args, **kwargs):
         self.updated_on = datetime.now()
         super(MenuItem, self).save()
+
+    def order_link(self):
+        model_id = self.id
+        kwargs = {"direction": "up",
+                  "model_id": model_id}
+        url_up = reverse("admin_move", kwargs=kwargs)
+        kwargs["direction"] = "down"
+        url_down = reverse("admin_move", kwargs=kwargs)
+        return '<a href="%s">up</a> | <a href="%s">down</a>'%(url_up, url_down)
+
+    order_link.allow_tags = True
+    order_link.short_description = 'Move'
+    order_link.admin_order_field = 'order'
         
     def get_absolute_url(self):
         if not self.external:
