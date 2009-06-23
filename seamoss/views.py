@@ -34,8 +34,15 @@ def render_page(request, slug):
 #TODO add in a preview view for admin previews
 
 @staff_member_required
-def admin_move_menu_item(request, direction, model_id):
+def admin_move_menu_item(request, direction, menuitem_id, target, position):
+    """
+    Move the menuitem to the requested target, at the given position
+    """
+
+    menuitem = MenuItem.objects.get(pk=menuitem_id)
+    position = request.POST.get('position', None)
+    target = MenuItem.objects.get(pk=target)
+    menuitem.move_to(target, position)
 
     url = "/admin/seamoss/menuitem/"
-
     return HttpResponseRedirect(url)
