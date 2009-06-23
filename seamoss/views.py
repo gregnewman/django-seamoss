@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
@@ -31,3 +32,10 @@ def render_page(request, slug):
 
 
 #TODO add in a preview view for admin previews
+
+@staff_member_required
+def admin_move_menu_item(request, direction, model_id):
+
+    url = "/admin/seamoss/menuitem/"
+
+    return HttpResponseRedirect(url)
