@@ -23,6 +23,14 @@ Features:
 4.  Basic key/value settings administration
 5.  Creation of content blocks for use in sidebars, footers, etc.
 
+Dependencies:
+=============
+
+1.  django-Markup
+2.  django-mptt
+3.  django-tagging (optional)
+4.  django-tinymce (optional)
+
 Roadmap:
 ========
 
