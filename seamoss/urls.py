@@ -3,7 +3,7 @@ from django.core.urlresolvers import reverse
 
 
 urlpatterns = patterns('',
-    url(r'^admin_move/(?P<direction>up|down)/(?P<menuitem_id>\d+)/$',
+    url(r'^admin_move/(?P<position>left|right)/(?P<menuitem>\d+)/(?P<target>\d+)/$',
         view = 'seamoss.views.admin_move_menu_item',
         name="admin_move"),
 

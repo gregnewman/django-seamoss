@@ -158,8 +158,8 @@ class MenuItem(models.Model):
     updated_by = models.ForeignKey(User, null=True, editable=False) 
 
 
-    class Meta:
-        ordering = ['name', ]
+#    class Meta:
+#        ordering = ['name', ]
 
     def __unicode__(self):
         return self.name
@@ -170,10 +170,15 @@ class MenuItem(models.Model):
 
     def order_link(self):
         model_id = self.id
-        kwargs = {"direction": "up",
-                  "menuitem_id": model_id}
+        target_left = self.get_previous_sibling()
+        print target_left
+        target_right = self.get_next_sibling()
+        kwargs = {"position": "left",
+                  "menuitem": model_id,
+                  "target": target_left.id}
         url_up = reverse("admin_move", kwargs=kwargs)
-        kwargs["direction"] = "down"
+        kwargs["position"] = "right"
+        kwargs["target"] = target_right.id
         url_down = reverse("admin_move", kwargs=kwargs)
         return '<a href="%s">up</a> | <a href="%s">down</a>'%(url_up, url_down)
 
