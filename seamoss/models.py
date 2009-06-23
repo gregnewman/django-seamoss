@@ -171,7 +171,7 @@ class MenuItem(models.Model):
     def order_link(self):
         model_id = self.id
         kwargs = {"direction": "up",
-                  "model_id": model_id}
+                  "menuitem_id": model_id}
         url_up = reverse("admin_move", kwargs=kwargs)
         kwargs["direction"] = "down"
         url_down = reverse("admin_move", kwargs=kwargs)
