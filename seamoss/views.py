@@ -6,7 +6,7 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
-from models import *
+from seamoss.models import Page, Menu, MenuItem, Block
 
 def home_page(request):
     """
@@ -14,9 +14,11 @@ def home_page(request):
     """
 
     page = get_object_or_404(Page, slug='home', published=True)
+    blocks = Block.objects.filter(show_on_pages=page, published=True)
     
     return render_to_response('seamoss/page.html', {
         "page": page,
+        "blocks": blocks,
     }, context_instance=RequestContext(request))
 
 def render_page(request, slug):
@@ -25,9 +27,11 @@ def render_page(request, slug):
     """
 
     page = get_object_or_404(Page, slug=slug, published=True)
+    blocks = Block.objects.filter(show_on_pages=page, published=True)
     
     return render_to_response('seamoss/page.html', {
         "page": page,
+        "blocks": blocks,
     }, context_instance=RequestContext(request))
 
 
